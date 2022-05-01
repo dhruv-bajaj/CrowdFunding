@@ -19,10 +19,10 @@ const App = (props)=>{
             <Grid.Row>
                 <Grid.Column width={13}>
                         <Card.Group id = "here" style={{backgroundColor:"#F1DDBF", padding:'10px 10px', margin:'10px 10px 0px 0px'}} fluid='true'>
-
                             {
                                 props.campaigns.map((item,index)=>{
-                                return (<DisplayCard address = {item} key ={item}/>);
+                                return <DisplayCard address = {item} key ={item}/>
+                                })
                             }
                         </Card.Group>
                 </Grid.Column>
