@@ -27,11 +27,9 @@ const DisplayCard  = (props) =>{
             overflowWrap:'break-word',
         },
         img:{
-    
         }
     }
     return(
-       
                     <Card key = {props.address}>
                     <Image style = {mystyle.image} src={summary["8"]} wrapped ui={false} />
                     <Card.Content>
@@ -46,6 +44,7 @@ const DisplayCard  = (props) =>{
                             <div>{summary["9"]}</div>
                         </p>
                         <ProgressBar currAmt = {summary["1"]} totalAmt = {summary["9"]}/>
+
                         <Link route={`/campaigns/${props.address}`}>
                             <a>View campaign</a>
                         </Link>

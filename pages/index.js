@@ -7,6 +7,9 @@ import { Link } from '../routes';
 import DisplayCard from '../components/DisplayCard.js';
 
 const App = (props)=>{
+
+    const [arr,setArr] = useState(props.tempList);
+
     return (
         <Layout>
         <div style={{color:'#78938A', marginLeft:'10px'}}>
@@ -16,10 +19,10 @@ const App = (props)=>{
             <Grid.Row>
                 <Grid.Column width={13}>
                         <Card.Group id = "here" style={{backgroundColor:"#F1DDBF", padding:'10px 10px', margin:'10px 10px 0px 0px'}} fluid='true'>
+
                             {
                                 props.campaigns.map((item,index)=>{
                                 return (<DisplayCard address = {item} key ={item}/>);
-                            })
                             }
                         </Card.Group>
                 </Grid.Column>
@@ -41,7 +44,9 @@ const App = (props)=>{
     );
 }
 App.getInitialProps = async ()=>{
+
        const campaigns = await factory.methods.getDeployedCampaigns().call();
     return {campaigns};
+
 }
 export default App;
