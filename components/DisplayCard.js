@@ -1,8 +1,15 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Card,Image } from 'semantic-ui-react';
+import Campaign from '../ethereum/campaign';
 import ProgressBar from './ProgressBar.js';
 import { Link } from '../routes';
 const DisplayCard  = (props) =>{
+    const [summary,setSummary] = useState([]);
+    useEffect(async () =>{
+        const tempCampaign = Campaign(props.address);
+        const summaryTemp = await tempCampaign.methods.getSummary().call();
+        setSummary(summaryTemp);
+    },[]);
     const mystyle={
         header: {
             fontWeight:'bold',
@@ -20,24 +27,24 @@ const DisplayCard  = (props) =>{
             overflowWrap:'break-word',
         },
         img:{
-           
         }
     }
     return(
-       
-            <Card key = {props.address}>
-                    <Image style = {mystyle.image} src={props.summary[8]} wrapped ui={false} />
+                    <Card key = {props.address}>
+                    <Image style = {mystyle.image} src={summary["8"]} wrapped ui={false} />
                     <Card.Content>
                         <Card.Header style={mystyle.header}>
-                            {props.summary[6]}
+                            {summary["6"]}
                         </Card.Header>
                         <Card.Description style={mystyle.description}>
                         <p>
-                            {props.summary[7]}
-                            {props.summary[1]}
-                            {props.summary[9]}
+                            <label>current balance</label>
+                            <div>{summary["1"]}</div>
+                            <label>target amount</label>
+                            <div>{summary["9"]}</div>
                         </p>
-                        <ProgressBar currAmt = {props.summary[1]} totalAmt = {props.summary[9]}/>
+                        <ProgressBar currAmt = {summary["1"]} totalAmt = {summary["9"]}/>
+
                         <Link route={`/campaigns/${props.address}`}>
                             <a>View campaign</a>
                         </Link>

@@ -7,6 +7,7 @@ import { Link } from '../routes';
 import DisplayCard from '../components/DisplayCard.js';
 
 const App = (props)=>{
+
     const [arr,setArr] = useState(props.tempList);
 
     return (
@@ -18,12 +19,10 @@ const App = (props)=>{
             <Grid.Row>
                 <Grid.Column width={13}>
                         <Card.Group id = "here" style={{backgroundColor:"#F1DDBF", padding:'10px 10px', margin:'10px 10px 0px 0px'}} fluid='true'>
-                            {/* {console.log(typeof(arr))}
-                            {console.log(arr)} */}
+
                             {
-                                props.campaigns.map((address,index)=>{
-                                return (<DisplayCard summary = {props.tempList[index]} address = {address} key ={address}/>);
-                            })
+                                props.campaigns.map((item,index)=>{
+                                return (<DisplayCard address = {item} key ={item}/>);
                             }
                         </Card.Group>
                 </Grid.Column>
@@ -45,15 +44,9 @@ const App = (props)=>{
     );
 }
 App.getInitialProps = async ()=>{
-    const campaigns = await factory.methods.getDeployedCampaigns().call();
-    const summaryList = campaigns.map(async (address)=>{
-        const campaign = Campaign(address);
-        const summary1 = campaign.methods.getSummary().call();
-        return summary1;
-    });
-    const tempList = await Promise.all(summaryList).then((values)=>{
-        return values;
-    })
-    return {campaigns,tempList};
+
+       const campaigns = await factory.methods.getDeployedCampaigns().call();
+    return {campaigns};
+
 }
 export default App;
