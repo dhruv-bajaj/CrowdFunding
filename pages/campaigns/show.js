@@ -31,7 +31,11 @@ const CampaignShow = (props)=>{
             manager,
             minimumContribution,
             requestsCount,
-            approversCount
+            approversCount,
+            campaignName,
+            description,
+            target,
+            fullName
         } = props;
 
         return(
@@ -41,9 +45,9 @@ const CampaignShow = (props)=>{
             <Grid.Row>
             <Grid.Column >
             <Card fluid>
-                <Card.Header style={mystyle.header}>{manager}</Card.Header>
-                <Card.Meta style={mystyle.meta}>Address of Manager</Card.Meta>
-                <Card.Description style={mystyle.description}>Manager created this campaign and can create withdrawal request</Card.Description>
+                <Card.Header style={mystyle.header}>{campaignName}</Card.Header>
+                <Card.Meta style={mystyle.meta}>Creator Name</Card.Meta>
+                <Card.Description style={mystyle.description}>{fullName}</Card.Description>
             </Card>
             </Grid.Column>
             <Grid.Column >
@@ -78,6 +82,21 @@ const CampaignShow = (props)=>{
                 <Card.Description style={mystyle.description}>This balance is how much money this campaign has left to spend.</Card.Description>
             </Card>
             </Grid.Column>
+            <Grid.Column >
+            <Card fluid>
+                <Card.Header style={mystyle.header}>{web3.utils.fromWei(target,'ether')}</Card.Header>
+                <Card.Meta style={mystyle.meta}>Target Amount</Card.Meta>
+                <Card.Description style={mystyle.description}>We are hoping to raise this much amount.</Card.Description>
+            </Card>
+            </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+            
+            <Card fluid style={{marginLeft:"10px",marginRight:"10px"}}> 
+                <Card.Header style={mystyle.header}>Description</Card.Header>
+                <Card.Description style={mystyle.description}>{description}</Card.Description>
+            </Card>
+            
             </Grid.Row>
             </Grid>
             </Card.Group>
@@ -116,7 +135,12 @@ CampaignShow.getInitialProps = async (props)=>{
         balance:summary[1],
         requestsCount:summary[2],
         approversCount:summary[3],
-        manager:summary[4]
+        manager:summary[4],
+        campaignName:summary[6],
+        description:summary[7],
+        target:summary[9],
+        fullName: summary[5]
+
     };
 }
 
