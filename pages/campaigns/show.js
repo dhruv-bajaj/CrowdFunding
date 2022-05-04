@@ -85,7 +85,7 @@ const CampaignShow = (props)=>{
             <Grid.Column >
             <Card fluid>
                 <Card.Header style={mystyle.header}>{web3.utils.fromWei(target,'ether')}</Card.Header>
-                <Card.Meta style={mystyle.meta}>Target Amount</Card.Meta>
+                <Card.Meta style={mystyle.meta}>Target Amount(ether)</Card.Meta>
                 <Card.Description style={mystyle.description}>We are hoping to raise this much amount.</Card.Description>
             </Card>
             </Grid.Column>

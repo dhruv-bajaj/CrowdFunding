@@ -38,9 +38,9 @@ const DisplayCard  = (props) =>{
                         </Card.Header>
                         <Card.Description style={mystyle.description}>
                         <p>
-                            <label>current balance</label>
+                            <label>current balance (wei)</label>
                             <div>{summary["1"]}</div>
-                            <label>target amount</label>
+                            <label>target amount (wei)</label>
                             <div>{summary["9"]}</div>
                         </p>
                         <ProgressBar currAmt = {summary["1"]} totalAmt = {summary["9"]}/>

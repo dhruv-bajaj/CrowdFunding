@@ -1,6 +1,6 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const Web3 = require('web3');
-const { abi:factoryAbi, evm:factoryEvm} = require('../backend/build/CampaignFactory.json');
+const { abi:factoryAbi, evm:factoryEvm} = require('./build/CampaignFactory.json');
 
  
 const provider = new HDWalletProvider(
